@@ -1,0 +1,8 @@
+  0           0 RESUME                   0
+
+  1           2 PUSH_NULL
+              4 LOAD_NAME                0 (print)
+              6 LOAD_CONST               0 ('Hola Mundo')
+              8 CALL                     1
+             16 POP_TOP
+             18 RETURN_CONST             1 (None)

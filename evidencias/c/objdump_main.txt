@@ -1,0 +1,18 @@
+0000000000401136 <main>:
+  401136:	f3 0f 1e fa          	endbr64
+  40113a:	55                   	push   rbp
+  40113b:	48 89 e5             	mov    rbp,rsp
+  40113e:	bf 04 20 40 00       	mov    edi,0x402004
+  401143:	b8 00 00 00 00       	mov    eax,0x0
+  401148:	e8 f3 fe ff ff       	call   401040 <printf@plt>
+  40114d:	b8 00 00 00 00       	mov    eax,0x0
+  401152:	5d                   	pop    rbp
+  401153:	c3                   	ret
+
+Disassembly of section .fini:
+
+0000000000401154 <_fini>:
+  401154:	f3 0f 1e fa          	endbr64
+  401158:	48 83 ec 08          	sub    rsp,0x8
+  40115c:	48 83 c4 08          	add    rsp,0x8
+  401160:	c3                   	ret
