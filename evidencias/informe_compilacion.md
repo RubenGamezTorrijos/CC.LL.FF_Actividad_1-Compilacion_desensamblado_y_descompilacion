@@ -1,9 +1,9 @@
 # INFORME TÉCNICO: ANÁLISIS DE COMPILACIÓN, BYTECODE Y REVERSIBILIDAD (C, JAVA Y PYTHON)
 
 **Asignatura:** Compiladores y Traductores / Arquitectura de Computadores  
-**Autor:** [Nombre del Estudiante]  
+**Autor:** Rubén Gámez Torrijos
 **Fecha:** 17 de Mayo de 2026  
-**Entorno de Trabajo:** Antigravity AI Engine (Windows Client + WSL2 Ubuntu 24.04 LTS)
+**Entorno de Trabajo:** VScode (Windows Client + WSL2 Ubuntu 24.04 LTS)
 
 ---
 
@@ -149,7 +149,7 @@ print('Hola Mundo')
 Para validar de forma empírica y rigurosa la teoría de la reversibilidad, se ha ejecutado un flujo de decompilación automática y sin cabeza (Headless) utilizando la suite de ingeniería inversa **Ghidra 12.1.0** instalada en el sistema. Se diseñó un script automatizado en Java nativo (`DecompileMain.java`) que interactúa con la interfaz de descompilación (`DecompInterface`) y extrae de forma directa el pseudocódigo generado por el descompilador de Ghidra para el punto de entrada principal (`main`).
 
 ### 1. Descompilación del Binario C (`holamundo` nativo)
-El archivo resultante en [evidencias/c/c_decompile.txt](file:///c:/Users/ruben/Proyectos/Antigravity/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/c/c_decompile.txt) contiene:
+El archivo resultante en [evidencias/c/c_decompile.txt](file:///c:/Users/ruben/Proyectos/VScode/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/c/c_decompile.txt) contiene:
 
 ```c
 undefined8 main(void)
@@ -167,7 +167,7 @@ undefined8 main(void)
 ---
 
 ### 2. Descompilación del Bytecode Java (`HolaMundo.class` JVM)
-Ghidra también posee un cargador nativo de JVM y analizador de bytecode. Al procesar el archivo `.class`, el decompiler tradujo la secuencia de bytecode a una representación orientada a pila en C, guardada en [evidencias/java/java_decompile.txt](file:///c:/Users/ruben/Proyectos/Antigravity/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/java/java_decompile.txt):
+Ghidra también posee un cargador nativo de JVM y analizador de bytecode. Al procesar el archivo `.class`, el decompiler tradujo la secuencia de bytecode a una representación orientada a pila en C, guardada en [evidencias/java/java_decompile.txt](file:///c:/Users/ruben/Proyectos/VScode/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/java/java_decompile.txt):
 
 ```c
 /* Flags:

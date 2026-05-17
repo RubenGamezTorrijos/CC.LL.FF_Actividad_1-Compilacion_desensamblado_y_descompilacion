@@ -57,10 +57,10 @@ python3 -m compileall .
 ### Fase 3.5: Descompilación Headless de Ghidra (C y Java)
 ```powershell
 # 1. Descompilación automatizada del ejecutable C (holamundo)
-C:\Ghidra\support\analyzeHeadless.bat C:\Users\ruben\Proyectos\Antigravity\UEM_CC.LL.FF_ACT1_Compilacion ghidra_proj -overwrite -import holamundo -scriptPath C:\Users\ruben\Proyectos\Antigravity\UEM_CC.LL.FF_ACT1_Compilacion -postScript DecompileMain.java -deleteProject
+C:\Ghidra\support\analyzeHeadless.bat C:\Users\ruben\Proyectos\VScode\UEM_CC.LL.FF_ACT1_Compilacion ghidra_proj -overwrite -import holamundo -scriptPath C:\Users\ruben\Proyectos\VScode\UEM_CC.LL.FF_ACT1_Compilacion -postScript DecompileMain.java -deleteProject
 
 # 2. Descompilación automatizada del archivo bytecode de Java (HolaMundo.class)
-C:\Ghidra\support\analyzeHeadless.bat C:\Users\ruben\Proyectos\Antigravity\UEM_CC.LL.FF_ACT1_Compilacion ghidra_proj -overwrite -import HolaMundo.class -scriptPath C:\Users\ruben\Proyectos\Antigravity\UEM_CC.LL.FF_ACT1_Compilacion -postScript DecompileMain.java -deleteProject
+C:\Ghidra\support\analyzeHeadless.bat C:\Users\ruben\Proyectos\VScode\UEM_CC.LL.FF_ACT1_Compilacion ghidra_proj -overwrite -import HolaMundo.class -scriptPath C:\Users\ruben\Proyectos\VScode\UEM_CC.LL.FF_ACT1_Compilacion -postScript DecompileMain.java -deleteProject
 ```
 
 ---
@@ -69,7 +69,7 @@ C:\Ghidra\support\analyzeHeadless.bat C:\Users\ruben\Proyectos\Antigravity\UEM_C
 
 El análisis detallado con las explicaciones del marco de pila, el constant pool, las instrucciones de bajo nivel de la JVM y CPython, la descompilación heurística en C y Java con Ghidra, y el análisis de reversibilidad y seguridad se encuentra en:
 
-👉 [**Leer el Informe de Compilación (evidencias/informe_compilacion.md)**](file:///c:/Users/ruben/Proyectos/Antigravity/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/informe_compilacion.md)
+👉 [**Leer el Informe de Compilación (evidencias/informe_compilacion.md)**](file:///c:/Users/ruben/Proyectos/VScode/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/informe_compilacion.md)
 
 ---
-*Desarrollado y validado en el entorno Antigravity.*
+*Desarrollado y validado por Rubén Gámez Torrijos.*
