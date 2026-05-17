@@ -1,0 +1,17 @@
+
+/* Flags:
+     ACC_PUBLIC
+     ACC_STATIC
+   
+   public static void main(java.lang.String[])  */
+
+void main_java_lang_String___void(String **param1)
+
+{
+  PrintStream *objectRef;
+  
+  objectRef = *System_out;
+  (*objectRef->println)(objectRef,"Hola Mundo");
+  return;
+}
+

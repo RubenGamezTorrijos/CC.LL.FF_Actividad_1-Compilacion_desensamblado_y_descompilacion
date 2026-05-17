@@ -140,6 +140,57 @@ Tras compilar el script original a bytecode binario optimizado para la máquina 
 
 print('Hola Mundo')
 ```
+```
+
+---
+
+## 🔮 FASE 3.5: DESCOMPILACIÓN DE ALTO NIVEL CON GHIDRA
+
+Para validar de forma empírica y rigurosa la teoría de la reversibilidad, se ha ejecutado un flujo de decompilación automática y sin cabeza (Headless) utilizando la suite de ingeniería inversa **Ghidra 12.1.0** instalada en el sistema. Se diseñó un script automatizado en Java nativo (`DecompileMain.java`) que interactúa con la interfaz de descompilación (`DecompInterface`) y extrae de forma directa el pseudocódigo generado por el descompilador de Ghidra para el punto de entrada principal (`main`).
+
+### 1. Descompilación del Binario C (`holamundo` nativo)
+El archivo resultante en [evidencias/c/c_decompile.txt](file:///c:/Users/ruben/Proyectos/Antigravity/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/c/c_decompile.txt) contiene:
+
+```c
+undefined8 main(void)
+
+{
+  printf("Hola Mundo\n");
+  return 0;
+}
+```
+
+#### 🔬 Análisis Técnico del Descompilador:
+*   **Tipado Heurístico (`undefined8`):** Ghidra analiza la firma basándose en la convención de llamadas y el tamaño del registro de retorno (`rax`). Dado que el binario es de 64 bits (`x86_64`) y la función retorna un valor, Ghidra asume un tipo genérico de 8 bytes (`undefined8`). En C estándar, `main` retorna un `int` (4 bytes), pero debido a la optimización de los registros del procesador AMD64, el compilador usa el registro completo, lo que genera esta aproximación heurística.
+*   **Restauración Lógica:** A pesar de haber desactivado PIE/PIC y eliminado información adicional, Ghidra logra resolver perfectamente la firma de `printf` analizando la PLT y asociando el primer argumento en `edi` con la dirección `.rodata` que almacena `"Hola Mundo\n"`.
+
+---
+
+### 2. Descompilación del Bytecode Java (`HolaMundo.class` JVM)
+Ghidra también posee un cargador nativo de JVM y analizador de bytecode. Al procesar el archivo `.class`, el decompiler tradujo la secuencia de bytecode a una representación orientada a pila en C, guardada en [evidencias/java/java_decompile.txt](file:///c:/Users/ruben/Proyectos/Antigravity/UEM_CC.LL.FF_ACT1_Compilacion/evidencias/java/java_decompile.txt):
+
+```c
+/* Flags:
+     ACC_PUBLIC
+     ACC_STATIC
+   
+   public static void main(java.lang.String[])  */
+
+void main_java_lang_String___void(String **param1)
+
+{
+  PrintStream *objectRef;
+  
+  objectRef = *System_out;
+  (*objectRef->println)(objectRef,"Hola Mundo");
+  return;
+}
+```
+
+#### 🔬 Análisis Técnico del Descompilador:
+*   **Traducción Semántica (P-Code a Dialecto C):** Ghidra traduce la pila de operandos y llamadas dinámicas de la JVM a su lenguaje intermedio (P-Code) y luego intenta reconstruirlo en un dialecto de tipo procedural C.
+*   **Mapeo de Estructuras JVM:** El decompiler de Ghidra mapea el campo estático `System.out` de tipo `PrintStream` como un puntero de referencia global `*System_out`. La llamada al método virtual `println` en la pila se modela ingeniosamente en C como una desreferenciación de puntero a función miembro: `(*objectRef->println)(objectRef, "Hola Mundo")`.
+*   **Fidelidad de Metadatos:** Se preservan perfectamente las propiedades del método de la JVM como flags (`ACC_PUBLIC`, `ACC_STATIC`), la firma completa (`String[] args`), y los nombres de las llamadas a bibliotecas, demostrando de forma contundente la alta reversibilidad y contenido semántico del bytecode respecto al código máquina plano.
 
 ---
 
