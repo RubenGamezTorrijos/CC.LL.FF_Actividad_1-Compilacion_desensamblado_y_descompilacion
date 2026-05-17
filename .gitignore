@@ -28,6 +28,7 @@ ghidra_proj/
 *.rep/
 
 # --- Archivos del sistema operativo y editores ---
+__pycache__/
 .DS_Store
 Thumbs.db
 .vscode/
