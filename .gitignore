@@ -1,0 +1,36 @@
+# ==========================================
+# GITIGNORE - Actividad de Compilación y Reversibilidad
+# ==========================================
+
+# --- Compilados de C (Binarios nativos) ---
+holamundo
+holamundo_pie
+*.exe
+*.out
+*.o
+*.obj
+
+# --- Compilados de Java (Bytecode nativo de JVM) ---
+*.class
+
+# --- Caches y bytecode de Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Clon local del decompilador pycdc (Código fuente externo) ---
+pycdc/
+
+# --- Archivos de proyecto Ghidra ---
+ghidra_proj/
+*.gpr
+*.rep/
+
+# --- Archivos del sistema operativo y editores ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
